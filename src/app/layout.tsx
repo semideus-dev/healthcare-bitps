@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
@@ -14,9 +15,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
